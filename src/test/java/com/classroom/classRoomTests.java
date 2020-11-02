@@ -1,11 +1,16 @@
 package com.classroom;
 
 import junit.framework.Assert;
-import org.junit.jupiter.api.BeforeAll;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+/*
+This test encompasses all major classes, by testing class room you are
+testing Person, Instrucor, Student, Learner interface, Teacher itnerface,
+and classroom
+ */
 
 public class classRoomTests {
 

@@ -15,4 +15,12 @@ public class Classroom {
     public void hostLecture(Teacher teacher, double numberOfHours){
         teacher.lecture(Students, numberOfHours);
     }
+
+    public List<Instructor> getInstructors() {
+        return Instructors;
+    }
+
+    public List<Student> getStudents() {
+        return Students;
+    }
 }

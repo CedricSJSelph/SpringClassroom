@@ -1,12 +1,14 @@
 package com.classroom;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Configuration
 public class InstructorsConfig {
 
     @Bean(name = "tuesdayInstructors")
@@ -33,9 +35,12 @@ public class InstructorsConfig {
     @Bean(name ="allInstructors")
     public Instructors instructors(){
         Instructors instructors = new Instructors(new ArrayList<>());
-        
-        instructors.add(new Instructor(104l, "Kb"));
-        instructors.add(new Instructor(105l, "Tutor2"));
+
+        instructors.add(new Instructor(100l, "Zan"));
+        instructors.add(new Instructor(101l, "Brian"));
+        instructors.add(new Instructor(102l, "Kaleb"));
+        instructors.add(new Instructor(103l, "Tutor"));
+
 
         return instructors;
     }
