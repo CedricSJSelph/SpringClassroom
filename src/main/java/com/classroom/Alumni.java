@@ -1,37 +1,39 @@
 package com.classroom;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.util.List;
 
 @Component
 public class Alumni {
 
-    @Autowired
-    @Qualifier("previousCohort")
+    final
     Classroom prevCohort;
 
-    List<Instructor> instructors = prevCohort.getInstructors();
-    List<Student> students = prevCohort.getStudents();
+
+    public Alumni(@Qualifier("previousCohort") Classroom prevCohort) {
+        this.prevCohort = prevCohort;
+    }
 
     @PostConstruct
     public void executeBootcamp(){
-        int totalNumHours = 1200;
-        instructors.get(0).lecture(students, totalNumHours);
+        int numberOfInstructors = prevCohort.getInstructors().size();
+        int numberOfStudents = prevCohort.getStudents().size();
+
+        double numberOfHoursToTeachEachStudent = 1200;
+        double numberOfHoursToTeach = numberOfHoursToTeachEachStudent * numberOfStudents; //1200*4 = 4800
+        double numberOfHoursPerInstructor = numberOfHoursToTeach / numberOfInstructors; //4800/2 = 2400
+
+        for(Instructor teach: prevCohort.getInstructors()){
+            for(Student stud: prevCohort.getStudents()){
+                teach.teach(stud, numberOfHoursPerInstructor);
+            }
+        }
     }
 
     public Classroom getPrevCohort() {
         return prevCohort;
     }
 
-    public List<Instructor> getInstructors() {
-        return instructors;
-    }
-
-    public List<Student> getStudents() {
-        return students;
-    }
 }
